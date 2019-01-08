@@ -1,5 +1,13 @@
 describe('L and C test', function() {
 
+	 var originalTimeout;
+
+	    beforeEach(function(done) {
+	        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+	        jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
+	    });
+	
+	
   it('L and C home page should open', function(done) {
 	  
 	//Step 1 - mortgage choices 
@@ -106,7 +114,7 @@ describe('L and C test', function() {
     //step 9 - about-you
     element.all(by.name('control')).get(0).sendKeys('02/02/1985'); //applicant's DOB
     
-    let list = element.all(by.css('.radio-input li'));
+    var list = element.all(by.css('.radio-input li'));
     
     list.get(0).click(); // applicant's nationality - UK
     
@@ -130,7 +138,7 @@ describe('L and C test', function() {
     
     
     //Step 11 - About the property - Page 1
-    let propertyList = element.all(by.css('.radio-input li'));
+    var propertyList = element.all(by.css('.radio-input li'));
     
     propertyList.get(0).click(); // Are you remortgaging the property you currently live in? - Yes
     
@@ -172,7 +180,7 @@ describe('L and C test', function() {
     
     //Step 14 - Affordability / Income
     
-    let jobDetailsList = element.all(by.css('.radio-input li'));
+    var jobDetailsList = element.all(by.css('.radio-input li'));
     
     jobDetailsList.get(0).click(); // Do you have a job? - Yes
     
@@ -251,8 +259,8 @@ describe('L and C test', function() {
   
     //Step 20 - product-playback/affordability
     //element(by.cssContainingText('.continue-journey.button', 'Continue')).click(); //continue-journey button
-    element(by.partialButtonText('Continue')).click(); //continue-journey button    
-    
+    element(by.partialButtonText('Continue')).click();	//continue-journey button
+  
     //Step 21 - Your finances
     element.all(by.name('control')).get(0).sendKeys('7654');  //What's the total monthly take home pay for your household?
     
@@ -266,16 +274,17 @@ describe('L and C test', function() {
     element(by.name('continue')).click();
     
     //Step 22 - suitability/repaying
-    let repaymentList = element.all(by.css('.radio-input li'));
+    var repaymentList = element.all(by.css('.radio-input li'));
     
     repaymentList.get(0).click(); // Are you planning to make overpayments within the deal period? - I don't expect to overpay
     
     repaymentList.get(3).click(); // Are you looking to repay your mortgage from income or assets in a currency other than sterling? - No 
     
-    element(by.name('continue')).click();
+    element(by.name('continue')).click()
+    	
     
     //Step 23 - suitability/finally
-    let additionalInfoList = element.all(by.css('.text-area-input'));
+    var additionalInfoList = element.all(by.css('.text-area-input'));
     additionalInfoList.get(0).sendKeys('Autotest - No particular reason'); // You mentioned earlier that you'd prefer a 2, 5 or 5+ year Fixed rate. Why is that?
     
     element(by.cssContainingText('.radio-input__label', 'No')).click(); //If the best mortgage deal has an arrangement fee would you like to add this to your mortgage? - No
@@ -286,25 +295,29 @@ describe('L and C test', function() {
     element(by.cssContainingText('.check-input_label', 'Phone')).click(); //How to keep in touch - Phone
     element(by.cssContainingText('.check-input_label', 'Post')).click(); //How to keep in touch - Post 
         
-    browser.pause()
-    
-    //var EC = protractor.ExpectedConditions;
+    //browser.pause(30000);//Check this 
     
     element(by.partialButtonText('Complete and send')).click(); // Complete and send
     //browser.wait(EC.elementToBeClickable(by.partialButtonText('Complete and send')), 30000);
     
-    browser.pause(30000)
+    //browser.pause(30000);//Check this 
     
     //Step 24 - Contact send-to-adviser
     element(by.partialButtonText('call me ASAP')).click(); // Send my enquiry and call me ASAP
     //browser.wait(EC.elementToBeClickable(by.partialButtonText('call me ASAP')), 30000);
     
-    //browser.pause();
+    //browser.pause();//Check this 
 
    
-   browser.sleep(30000);    
-
-  
+   //browser.sleep(30000);    
+    
+    done();
     
   });
+  
+  afterEach(function() {
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+      console.log(originalTimeout);
+    });
+  
 });
