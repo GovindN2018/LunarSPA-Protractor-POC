@@ -1,4 +1,4 @@
-describe('L and C test', function() {
+describe('L and C E2E test as a non logged-in user', function() {
 
 	 var originalTimeout;
 
@@ -8,7 +8,7 @@ describe('L and C test', function() {
 	    });
 	
 	
-  it('L and C home page should open', function(done) {
+  it('Should create a new unencumbered-single-repayment enquiry with no dependents in Lunar-CAT environment', function(done) {
 	  
 	//Step 1 - mortgage choices 
 	  
