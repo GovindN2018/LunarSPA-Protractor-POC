@@ -19,10 +19,9 @@ describe('L and C Protractor Tests', function() {
 	//Step 1 - mortgage choices 
 	browser.driver.manage().window().maximize();
 
-  		beforeEach(function() {
-  			
-  		});
+	    beforeEach(function() {
 
+	    });
   		
   		//https://onlinecat.landc.co.uk/mortgage-choices
   		it('should load home page successfully', function(){
@@ -189,9 +188,10 @@ describe('L and C Protractor Tests', function() {
   				expect(mortgageTenureOutOfBoundErrorMsg == text);
   			});
   			
-  	  		//browser.sleep(20000); 
+  	  		browser.sleep(5000); 
   		});
-	
+  		
+
 });
     
 

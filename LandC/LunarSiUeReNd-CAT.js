@@ -8,7 +8,7 @@ describe('L and C E2E test as a non logged-in user', function() {
 	    });
 	
 	
-  it('Should create a new unencumbered-single-repayment enquiry with no dependents in Lunar-CAT environment', function(done) {
+  it('Should create a new unencumbered-single account with no dependents-repayment enquiry in Lunar-CAT environment', function(done) {
 	  
 	//Step 1 - mortgage choices 
 	  
@@ -100,11 +100,11 @@ describe('L and C E2E test as a non logged-in user', function() {
     element.all(by.css('.dropdown_selected')).get(1).click(); // applicant's marital status
     element.all(by.css('.dropdown_option')).get(5).click(); // applicant's marital status - Civil Partnership   
     
-    element.all(by.name('control')).get(3).sendKeys('Solar-CAT@outlook.com'); //applicant's email address
+//    element.all(by.name('control')).get(3).sendKeys('Solar-CAT@outlook.com'); //applicant's email address
 	
 //    element.all(by.name('control')).get(3).sendKeys('govind.nayak@runpath.com'); //applicant's email address
 
-//    element.all(by.name('control')).get(3).sendKeys('Harry.Scofield@runpath.com'); //applicant's email address
+    element.all(by.name('control')).get(3).sendKeys('anthon.thomas@runpath.com'); //applicant's email address
     
     element.all(by.name('control')).get(4).sendKeys('07470302121'); //applicant's mobile phone number    
     
@@ -309,7 +309,7 @@ describe('L and C E2E test as a non logged-in user', function() {
     //browser.pause();//Check this 
 
    
-   //browser.sleep(30000);    
+   browser.sleep(5000);    
     
     done();
     
