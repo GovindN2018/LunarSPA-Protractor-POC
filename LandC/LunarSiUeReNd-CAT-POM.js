@@ -82,19 +82,22 @@ describe('L and C E2E test as a non logged-in user', function() {
 	    
 	    var btnContinue = element(by.name('continue'));
 		
-		this.setRemortgaging = function() {
+		this.clickRemortgaging = function() {
 			btnRemortgaging.click();
 		};
 		
-		this.setLivingThere = function() {
+		this.clickLivingThere = function() {
 			btnLivingThere.click();
 		};
 		
-		this.setUnencumbered = function() {
+		this.clickUnencumbered = function() {
 			btnUnencumbered.click();
 		};
 		
-		
+		this.clickContinue = function() {
+			btnContinue.click();
+		};
+				
 
 	  
 	  
