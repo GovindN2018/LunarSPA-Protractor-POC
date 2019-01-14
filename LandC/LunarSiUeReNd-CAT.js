@@ -14,7 +14,8 @@ describe('L and C E2E test as a non logged-in user', function() {
 	  
 	//var expectedUrl = "https://onlinecat.landc.co.uk/mortgage-choices";  
 
-    browser.get('https://onlinecat.landc.co.uk/mortgage-choices');
+    //browser.get('https://onlinecat.landc.co.uk/mortgage-choices');
+    browser.get('https://online.landc.co.uk/mortgage-choices');
     browser.driver.manage().window().maximize();
     
     //check url of the current page
@@ -100,11 +101,13 @@ describe('L and C E2E test as a non logged-in user', function() {
     element.all(by.css('.dropdown_selected')).get(1).click(); // applicant's marital status
     element.all(by.css('.dropdown_option')).get(5).click(); // applicant's marital status - Civil Partnership   
     
+    element.all(by.name('control')).get(3).sendKeys('Solar-LIVE@outlook.com'); //applicant's email address
+    
 //    element.all(by.name('control')).get(3).sendKeys('Solar-CAT@outlook.com'); //applicant's email address
 	
 //    element.all(by.name('control')).get(3).sendKeys('govind.nayak@runpath.com'); //applicant's email address
 
-    element.all(by.name('control')).get(3).sendKeys('anthon.thomas@runpath.com'); //applicant's email address
+//    element.all(by.name('control')).get(3).sendKeys('anthon.thomas@runpath.com'); //applicant's email address
     
     element.all(by.name('control')).get(4).sendKeys('07470302121'); //applicant's mobile phone number    
     
@@ -303,13 +306,13 @@ describe('L and C E2E test as a non logged-in user', function() {
     //browser.pause(30000);//Check this 
     
     //Step 24 - Contact send-to-adviser
-    element(by.partialButtonText('call me ASAP')).click(); // Send my enquiry and call me ASAP
+   // element(by.partialButtonText('call me ASAP')).click(); // Send my enquiry and call me ASAP
     //browser.wait(EC.elementToBeClickable(by.partialButtonText('call me ASAP')), 30000);
     
     //browser.pause();//Check this 
 
    
-   browser.sleep(5000);    
+   browser.sleep(30000);    
     
     done();
     
