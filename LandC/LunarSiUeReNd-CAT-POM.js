@@ -1,44 +1,31 @@
-//POM framework
+//POM framework for LunarSPA
 
-describe('L and C E2E test as a non logged-in user', function() {
-
-	 var originalTimeout;
-
-	    beforeEach(function(done) {
-	        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-	        jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
-	    });
-	
-
-  it('Should create a new unencumbered-single account with no dependents-repayment enquiry in Lunar-CAT environment', function(done) {
+//refactoring start at line 160
 	  
-	//Step 1 - mortgage choices 
-	  
-	//var expectedUrl = "https://onlinecat.landc.co.uk/mortgage-choices";  
-
-	var MortgageChoices = function() {
+	var LunarSPA = function() {
 		
+		this.get = function() {
+		    browser.get('https://onlinecat.landc.co.uk/mortgage-choices');
+		    browser.driver.manage().window().maximize();
+		};			
+		
+	    //common elements reused on multiple pages
 	    var lnkRegister = element(by.cssContainingText('.header_auth-nav.auth-nav', 'Register'));
 	    
 	    var lnkLogin = element(by.cssContainingText('.header_auth-nav.auth-nav', 'Login'));
 	    
-	    var btnResiPurchase = element.all(by.cssContainingText('.button.button--large.margin-bottom-sm', 'Residential Purchase'));
+	    var btnContinue = element(by.name('continue'));
 	    
-	    var btnResiRemort = element.all(by.cssContainingText('.button.button--large.margin-bottom-sm.margin-left-sm--bp-sm', 'Residential Remortgage'));
+	    var lnkSaveProgress = element(by.cssContainingText('.block-link', ' Save progress '));	    
 	    
-	    var btnBTLPurchase = element.all(by.cssContainingText('.button.button--large.margin-bottom-sm', 'Buy to Let Purchase'));
+	    var btnLiveChat = element(by.cssContainingText('.button.button--tertiary', 'LiveChat'));
 	    
-	    var btnBTLRemort = element.all(by.cssContainingText('.button.button--large.margin-bottom-sm.margin-left-sm--bp-sm', 'Buy to Let Remortgage'));
+	    var lnkRequestCallback = element(by.cssContainingText('.font-small.text-periwinkle-purple', 'request a callback'));
 	    
 	    var lnkTNC = element(by.cssContainingText('.footer__link', 'Terms & Conditions'));
 	    
 	    var lnkPrivPolicy = element(by.cssContainingText('.footer__link', 'Privacy Policy'));
 
-		this.get = function() {
-		    browser.get('https://onlinecat.landc.co.uk/mortgage-choices');
-		    browser.driver.manage().window().maximize();
-		};	    
-	    
 		this.clickRegister = function() {
 			lnkRegister.click();				// click lnkRegister link in header section
 		};
@@ -47,6 +34,41 @@ describe('L and C E2E test as a non logged-in user', function() {
 			lnkLogin.click();					// click lnkLogin link in header section
 		};
 		
+		this.clickContinue = function() {
+			btnContinue.click();
+		};
+		
+		this.clickSaveProgress = function() {
+			lnkSaveProgress.click();
+		};
+		
+		this.clickLiveChat = function() {
+			btnLiveChat.click();
+		};
+		
+		this.clickRequestCallback = function() {
+			lnkRequestCallback.click();
+		};		
+		
+		this.clickTNC = function() {
+			lnkTNC.click();
+		};		
+		
+		this.clickPrivPolicy = function() {
+			lnkPrivPolicy.click();
+		};
+		
+
+		//Step 1 - https://landclunartest.azurewebsites.net/mortgage-choices
+		
+	    var btnResiPurchase = element.all(by.cssContainingText('.button.button--large.margin-bottom-sm', 'Residential Purchase'));
+	    
+	    var btnResiRemort = element.all(by.cssContainingText('.button.button--large.margin-bottom-sm.margin-left-sm--bp-sm', 'Residential Remortgage'));
+	    
+	    var btnBTLPurchase = element.all(by.cssContainingText('.button.button--large.margin-bottom-sm', 'Buy to Let Purchase'));
+	    
+	    var btnBTLRemort = element.all(by.cssContainingText('.button.button--large.margin-bottom-sm.margin-left-sm--bp-sm', 'Buy to Let Remortgage'));
+	    		
 		this.clickResiPurchase = function() {
 			btnResiPurchase.get(0).click();		// click btnResiPurchase button in top cluster
 			btnResiPurchase.get(1).click();		// click btnResiPurchase button in bottom cluster		
@@ -67,60 +89,87 @@ describe('L and C E2E test as a non logged-in user', function() {
 			btnBTLRemort.get(1).click();		// click btnBTLRemort button in bottom cluster				
 		};
     
-	};	    
+	};// this will be at the end of this file	    
 	    
 	
-    //Step 2 - Pre-questions
-	
-	
-	//select the page level options
-	    var btnRemortgaging = element(by.cssContainingText('.radio-input__label', 'Remortgaging')); // buying or remortgaging?
-
-	    var btnLivingThere = element(by.cssContainingText('.radio-input__label', 'Living there')); // live in or let it out?   
-	    
-	    var btnUnencumbered = element(by.cssContainingText('.radio-input__label', 'Unlock cash from a mortgage free property'));
-	    
-	    var btnContinue = element(by.name('continue'));
+    	//Step 2 - https://landclunartest.azurewebsites.net/pre-questions
 		
-		this.clickRemortgaging = function() {
-			btnRemortgaging.click();
+		//Are you buying a property or remortgaging one?
+		var rbBuying = element(by.cssContainingText('.radio-input__label', 'Buying'));
+		var rbRemortgaging = element(by.cssContainingText('.radio-input__label', 'Remortgaging'));
+		
+		this.clickrbBuying = function() {
+			rbBuying.click();
 		};
 		
+		this.clickrbRemortgaging = function() {
+			rbRemortgaging.click();
+		};
+
+	    //Do you live in the property or let it out?
+		var rbLivingThere = element(by.cssContainingText('.radio-input__label', 'Living there'));
+	    var rbLetout = element(by.cssContainingText('.radio-input__label', 'Letting it out'));
+	    
 		this.clickLivingThere = function() {
-			btnLivingThere.click();
+			rbLivingThere.click();
+		};
+		
+		this.clickLetout = function() {
+			rbLetout.click();
+		};
+	    
+	    //Why are you thinking about remortgaging?
+	    var rbFreeUpSomeCash = element(by.cssContainingText('.radio-input__label', 'Free up some cash'));
+	    var rbPayOffMortgageFaster = element(by.cssContainingText('.radio-input__label', 'Pay off my mortgage faster'));
+	    var rbCutMonthlyCosts = element(by.cssContainingText('.radio-input__label', 'Cut my monthly costs'));
+	    var rbUpdateOwnershipDetails = element(by.cssContainingText('.radio-input__label', 'Update my ownership details'));
+	    var rbUnencumbered = element(by.cssContainingText('.radio-input__label', 'Unlock cash from a mortgage free property'));
+	    var rbSomethingElse = element(by.cssContainingText('.radio-input__label', 'Something else'));
+	    
+	    var taMRSomethingElse = element(by.tagName('textarea')).element(by.css('.text-area-input.ng-pristine.ng-valid.ng-touched'));
+
+		this.clickFreeUpSomeCash = function() {
+			rbFreeUpSomeCash.click();
+		};
+		
+		this.clickPayOffMortgageFaster = function() {
+			rbPayOffMortgageFaster.click();
+		};
+		
+		this.clickCutMonthlyCosts = function() {
+			rbCutMonthlyCosts.click();
+		};
+		
+		this.clickUpdateOwnershipDetails = function() {
+			rbUpdateOwnershipDetails.click();
 		};
 		
 		this.clickUnencumbered = function() {
-			btnUnencumbered.click();
+			rbUnencumbered.click();
 		};
 		
-		this.clickContinue = function() {
-			btnContinue.click();
+		this.clickSomethingElse = function() {
+			rbSomethingElse.click();
 		};
-				
+		
+		this.sendkeysSomethingElse = function() {
+			taMRSomethingElse.sendKeys("XXX");
+		};
 
-	  
-	  
-	  
-
-    
-    //check url of the current page
-    //expect(browser.getCurrentUrl()).toEqual("expectedUrl");
-    
-    
-
-    
-    
+		
+//-----------------------------------------------------------------------		
     //Step 3 - existing mortgage
-    element(by.name('continue')).click();
-    
-    
+		//modify and use following
+		//element.all(by.css('.predictive-input')).get(0).click(); 
+	    //element(by.cssContainingText('.predictive-input_option', 'United Kingdom')).click(); // Your nationality - UK
+	    
+        
     //Step 4 - mortgage needs
-    element.all(by.name('control')).get(0).sendKeys(250000); //borrowing amount
-    element.all(by.name('control')).get(1).sendKeys(650000); //property value
-    element.all(by.name('control')).get(2).sendKeys(20); //mortage term in years
+    var txtBorrowAmount = element.all(by.name('control')).get(0).sendKeys(250000); //borrowing amount
+    var txtPropertyValue = element.all(by.name('control')).get(1).sendKeys(650000); //property value
+    var txtMortgageTerm = element.all(by.name('control')).get(2).sendKeys(20); //mortage term in years
     
-    element(by.cssContainingText('.radio-input__label', 'Repayment')).click(); //mortgage type
+    var rbMortgageType = element(by.cssContainingText('.radio-input__label', 'Repayment')).click(); //mortgage type
     
     element(by.cssContainingText('.check-input_label', 'Fixed')).click(); //payment type
     
