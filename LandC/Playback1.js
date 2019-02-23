@@ -17,7 +17,6 @@ describe('L and C Protractor Tests', function() {
 	var mortgageTenureOutOfBoundErrorMsg = "Please enter a value less than or equal to 40"; // value > 40
   
 	//Step 1 - mortgage choices 
-	browser.driver.manage().window().maximize();
 
 	    beforeEach(function() {
 
