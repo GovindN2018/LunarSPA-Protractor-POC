@@ -5,6 +5,18 @@ exports.config = {
   specs: ['Playback1.js'],
   
   allScriptsTimeout: 30000,
+  
+  onPrepare : function() {
+		
+	  browser.driver.manage().window().maximize();
+		
+		jasmine.getEnv().addReporter(
+		        new Jasmine2HtmlReporter({
+		          savePath: 'target/screenshots'
+		        })
+		      );
+		
+  }
 	
   capabilities: {
 	    'browserName': 'chrome',
