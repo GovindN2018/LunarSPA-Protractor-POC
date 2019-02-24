@@ -22,8 +22,6 @@ exports.config = {
   jasmineNodeOpts: {
 	  showColors: true, // Use colors in the command line prompt
   },
-		
-
 	
   capabilities: {
 	    'browserName': 'chrome',
