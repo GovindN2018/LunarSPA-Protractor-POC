@@ -1,3 +1,5 @@
+var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
+
 exports.config = {
   framework: 'jasmine',
   seleniumAddress: 'http://localhost:4444/wd/hub',
@@ -15,8 +17,13 @@ exports.config = {
 		          savePath: 'target/screenshots'
 		        })
 		      );
+  },
+  
+  jasmineNodeOpts: {
+	  showColors: true, // Use colors in the command line prompt
+  },
 		
-  }
+
 	
   capabilities: {
 	    'browserName': 'chrome',
